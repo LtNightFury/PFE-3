@@ -33,7 +33,7 @@
         <button class="btn btn_tab" routerLink="/location" [ngClass]="{'active_tab': activeTab === 'Location'}">Location</button>
       </div>
       <div class="form_tab" (click)="setActiveTab('Specification')">
-        <button class="btn btn_tab" [ngClass]="{'active_tab': activeTab === 'Specification'}">Specification</button>
+        <button class="btn btn_tab" routerLink="/specification" [ngClass]="{'active_tab': activeTab === 'Specification'}">Specification</button>
       </div>
       <div class="form_tab" (click)="setActiveTab('Amminities')">
         <button class="btn btn_tab" [ngClass]="{'active_tab': activeTab === 'Amminities'}">Amminities</button>
