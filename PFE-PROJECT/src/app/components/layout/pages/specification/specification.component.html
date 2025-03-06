@@ -1,1 +1,100 @@
-<p>specification works!</p>
+<form [formGroup]="specificationForm" (ngSubmit)="onSubmit()">
+    <div class="form-body">
+        <div class="form-row-view">
+            <div class="form-row-legend">
+                <h2 class="title-2">Rooms</h2>
+                <p class="desc">
+                    Specify the number of rooms. Kitchen and other auxiliary premises do
+                    not need to be indicated.
+                </p>
+            </div>
+            <div class="form-row-body">
+                <div class="form-list-view">
+                    <label for="bedroom-options" class="input_label">Number of bedrooms</label>
+                    <div class="bedroom-options">
+                        <button type="button" *ngFor="let option of bedroomOptions" [class.selected]="
+                specificationForm.get('bedrooms')?.value === option.value
+              " (click)="selectBedroom(option.value)">
+                            {{ option.label }}
+                        </button>
+                    </div>
+                    <div class="input_hint mt-1">Required</div>
+                </div>
+                <div class="form-list-view">
+                    <label for="bedroom-options" class="input_label">Number of bathrooms</label>
+                    <div class="bedroom-options">
+                        <button type="button" *ngFor="let option of bathroomOptions" [class.selected]="
+                specificationForm.get('bathrooms')?.value === option.value
+              " (click)="selectBathroom(option.value)">
+                            {{ option.label }}
+                        </button>
+                    </div>
+                    <div class="input_hint mt-1">Required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row-view">
+            <div class="form-row-legend">
+                <h2 class="title-2">Parking</h2>
+                <p class="desc">Provide information about parking availability</p>
+            </div>
+            <div class="form-row-body">
+                <div class="form-list-view">
+                    <label for="bedroom-options" class="input_label">Number of parking slots</label>
+                    <div class="bedroom-options">
+                        <button type="button" *ngFor="let option of parkingOptions" [class.selected]="
+                specificationForm.get('parkingSpots')?.value === option.value
+              " (click)="selectParking(option.value)">
+                            {{ option.label }}
+                        </button>
+                    </div>
+                    <div class="input_hint mt-1">Required</div>
+                </div>
+            </div>
+        </div>
+        <div class="form-row-view">
+            <div class="form-row-legend">
+                <h2 class="title-2">Parameters</h2>
+                <p class="desc">Provide apartment’s characteristics</p>
+            </div>
+            <div class="form-row-body">
+                <div class="grid">
+                    <div class="input">
+                    <label for="size" class="input_label">size</label>
+                    <div class="input_inner">
+                    <input
+                        type="number"
+                        id="size"
+                        formControlName="size"
+                        class="form_control"
+                        ></div>
+                    </div>
+                    <div class="input">
+
+                        <label for="plotSize" class="input_label">plotSize</label>
+                        <div class="input_inner">
+                        <input
+                            type="number"
+                            id="plotSize"
+                            formControlName="plotSize"
+                            class="form_control"
+                            ></div>
+                        </div>
+                        <div class="input" class="input_label">
+                            <label for="b-up">Built-up area</label>
+                            <div class="input_inner">
+                            <input
+                                type="number"
+                                id="b-up"
+                                formControlName="builtUpArea"
+                                class="form_control"
+                                ></div>
+                            </div>
+                    
+                </div>
+                
+            </div>
+        </div>
+    </div>
+    <button type="submit" [disabled]="specificationForm.invalid">Submit</button>
+</form>
