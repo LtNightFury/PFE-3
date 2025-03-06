@@ -1,0 +1,65 @@
+
+<div class="top_body">
+<header class="header">
+<div class="header m-2 d-flex ">
+    <!-- breadcrumbs start -->
+    <div class="breadcrumbs d-flex gap-3 ">
+        <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
+            <ol class="breadcrumb ">
+              <li class="breadcrumb-item"><span class="">Properties</span></li>
+              <li class="breadcrumb-item active " aria-current="page">Property edit</li>
+            </ol>
+          </nav>
+    </div>
+    <!-- breadcrumbs end -->
+</div>
+<div class="header_title d-flex justify-content-between m-3 align-items-center">
+    <h1 class="">Create Property</h1>
+    <div class="header_end">
+        <div class="header_end_btn">
+            <button class="btn btn_cancel "><span class="text-decoration-underline">Cancel</span></button>
+            <button class="btn btn_save "><span>Save</span></button></div>
+        </div>
+    
+</div>
+
+<!-- lena el Form tab View !-->
+
+<div class="form_tab_view d-flex gap-3 m-3 overflow-auto">
+    <div class="form_tab" (click)="setActiveTab('General')">
+        <button class="btn btn_tab" [routerLink]="'/general'" [ngClass]="{'active_tab': activeTab === 'General'}">General</button>
+      </div>
+      <div class="form_tab" (click)="setActiveTab('Location')">
+        <button class="btn btn_tab" routerLink="/location" [ngClass]="{'active_tab': activeTab === 'Location'}">Location</button>
+      </div>
+      <div class="form_tab" (click)="setActiveTab('Specification')">
+        <button class="btn btn_tab" [ngClass]="{'active_tab': activeTab === 'Specification'}">Specification</button>
+      </div>
+      <div class="form_tab" (click)="setActiveTab('Amminities')">
+        <button class="btn btn_tab" [ngClass]="{'active_tab': activeTab === 'Amminities'}">Amminities</button>
+      </div>
+      <div class="form_tab" (click)="setActiveTab('Price')">
+        <button class="btn btn_tab" [ngClass]="{'active_tab': activeTab === 'Price'}">Price</button>
+      </div>
+      <div class="form_tab" (click)="setActiveTab('Media')">
+        <button class="btn btn_tab" [ngClass]="{'active_tab': activeTab === 'Media'}">Media</button>
+      </div>
+      <div class="form_tab" (click)="setActiveTab('Publication')">
+        <button class="btn btn_tab" [ngClass]="{'active_tab': activeTab === 'Publication'}">Publication</button>
+      </div>
+      <div class="form_tab" (click)="setActiveTab('Contacts')">
+        <button class="btn btn_tab" [ngClass]="{'active_tab': activeTab === 'Contacts'}">Contacts</button>
+      </div>
+    
+    
+ </div>
+
+
+   <!-- Toufa lena el Form Tab View !-->
+
+</header>
+</div>
+
+ <body>
+  <router-outlet></router-outlet>
+ </body>

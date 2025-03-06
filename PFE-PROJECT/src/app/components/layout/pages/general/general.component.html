@@ -1,0 +1,189 @@
+<form  [formGroup]="generalForm "(ngSubmit)="onSubmit()" >
+  <div class="form-body">
+    <div class="form-row-view">
+      <div class="form-row-legend">
+        <h2 class="title-2">general</h2>
+        <p class="desc text-body-secondary">Set status and category for this property</p>
+      </div>
+      <div class="form-row-body">
+        <div class="form-list-view">
+          <legend class="radio_legend">Deal type</legend>
+          <div class="radio_options">
+            <label class="radio_option">
+              <input type="radio" name="deal_type" formControlName="deal_type" value="sale"  class="radio_input" checked />
+              <span class="radio_state text-base">Sale</span>
+            </label>
+            <label class="radio_option">
+              <input type="radio" name="deal_type" formControlName="deal_type" value="rent" class="radio_input" />
+              <span class="radio_state text-base">Rent</span>
+            </label>
+          </div>
+        </div>
+        <div class="d-grid gap-4" style="grid-template-columns: repeat(2, 1fr)">
+          <div class="input">
+            <label for="inputref" class="input_label  "  >Reference</label>
+            <div class="input_inner">
+              <input type="text" id="inputref" name="inputref" formControlName="Reference" placeholder="Enter a Reference" class="input_control" />
+            </div>
+            <p class="input_hint  mt-1">Required</p>
+          </div>
+          
+          <div class="select-status">
+            <label for="status" class="input_label">Status</label>
+            <select id="status" class="select" formControlName="status">
+              <option value="" disabled selected>Select an option</option>
+              <option *ngFor="let statusss of statusArray" [value]="statusss.value">
+                {{ statusss.label }}</option>
+            </select>
+            <p class="input_hint mt-1">Required</p>
+          </div>
+
+          <div class="select-status">
+            <label for="category" class="input_label">Category</label>
+            <select id="category" class="select" formControlName="category">
+              <option class="first-select" value=""  selected disabled >Select an option</option>
+              
+              <option *ngFor="let category of categoriesArray" [disabled]="category.value==='Commercial'||category.value==='Residential'" [value]="category.value" [ngClass]="{'selected-option': category.value === 'Commercial' || category.value === 'Residential', 'disabled-option': category.value === 'Commercial' || category.value === 'Residential' }"> {{ category.label }}</option>
+             </select>
+            <p class="input_hint mt-1">Required</p>
+          </div>
+
+          
+          <div class="input" *ngIf="generalForm.get('deal_type')?.value === 'rent'" >
+            <label for="availabilityDate" class="input_label " >Availability Date</label>
+            <div class="input_inner ">
+              <input type="date" class="input_control"   formControlName="availabilityDate" />
+            </div>
+            <p class="input_hint  mt-1">Required</p>
+          </div>
+          
+
+          <div class="select-status">
+            <label for="status" class="input_label">Broker</label>
+            <select id="status" class="select " formControlName="broker">
+              <option value="" disabled selected>Select an option</option>
+              <option *ngFor="let broker of brokersArray" [value]="broker.value">
+                {{ broker.label }}</option>
+            </select>
+            <p class="input_hint mt-1">Required</p>
+          </div>
+
+          <div class="select-status">
+            <label for="status" class="input_label">WorkFlow</label>
+            <select id="status" class="select" formControlName="workflow" >
+              <option value="" disabled selected>Select an option</option>
+              <option *ngFor="let workflow of workflowsArray" [value]="workflow.value">
+                {{ workflow.label }}</option>
+            </select>
+            <p class="input_hint mt-1">Required</p>
+          </div>
+
+          <div class="select-status " *ngIf="generalForm.get('deal_type')?.value === 'rent'">
+            <label for="status" class="input_label">Rental frequency</label>
+            <select id="status" class="select" formControlName="frequency" >
+              <option value="" disabled selected>Select an option</option>
+              <option *ngFor="let frequency of frequencyArray" [value]="frequency.value">
+                {{ frequency.label }}</option>
+            </select>
+            <p class="input_hint mt-1">Required</p>
+          </div>
+
+        </div>
+        
+        <div class="form-row-body">
+          <label for="inputref" class="input_label  "  >Off Market</label>
+          <div class="radio_options">
+            
+            <label class="radio_option">
+              <input type="radio"  formControlName="offMarket" value="YES"  class="radio_input" checked />
+              <span class="radio_state text-bold">YES</span>
+            </label>
+            <label class="radio_option">
+              <input type="radio"  formControlName="offMarket" value="NO" class="radio_input" />
+              <span class="radio_state ">NO</span>
+            </label>
+          </div>
+        </div>
+        <div class="cheque-select" *ngIf="generalForm.get('deal_type')?.value === 'rent'" >
+          <label for="cheque" class="input_label">Cheques</label>
+        <div class="select-wraper ">
+          <div class="box">1</div>
+          <div class="box">2</div>
+          <div class="box">3</div>
+          <div class="box">4</div>
+          <div class="box">5</div>
+          <div class="box">6</div>
+          <div class="box">7</div>
+          <div class="box">8</div>
+          <div class="box">9</div>
+          <div class="box">10</div>
+          <div class="box">11</div>
+          <div class="box">12</div>
+        </div>
+        </div>
+      </div>
+      
+    </div>
+    <div class="form-row-view">
+      <div class="form-row-legend">
+        <h2 class="title-2">Mandate</h2>
+        <p class="desc text-body-secondary fs-6">Enter details of building and mandate</p>
+      </div>
+      <div class="form-row-body">
+        <div class="form-list-view">
+          <div class="select-status">
+            <label for="inputref" class="input_label">Mandate type</label>
+            <select id="status" class="select" formControlName="mandate_type" >
+              <option value="" disabled selected>Select an option</option>
+              <option *ngFor="let mandate of mandateArray" [value]="mandate.value">
+                {{ mandate.label }}</option>
+            </select>
+            <p class="input_hint mt-1">Required</p>
+          </div>
+
+        </div>
+        <div class="grid-col-3 gap-6">
+          <div class="input">
+            <label for="inputref" class="input_label " >Starte of mandate</label>
+            <div class="input_inner ">
+              <input type="date" class="input_control"   formControlName="mdstart" />
+            </div>
+            <p class="input_hint  mt-1">Required</p>
+          </div>
+          <div class="input">
+            <label for="inputref" class="input_label " >End of Mandate</label>
+            <div class="input_inner ">
+              <input type="date" class="input_control"   formControlName="mdend" />
+            </div>
+            <p class="input_hint  mt-1">Required</p>
+          </div>
+          <div class="input">
+            <label for="inputref" class="input_label " >Renewal of mandate</label>
+            <div class="input_inner ">
+              <input type="date" class="input_control"   formControlName="mdsrenewal" />
+            </div>
+            <p class="input_hint  mt-1">Required</p>
+          </div>
+
+         </div>
+         <div class="input">
+          <label for="inputref" class="input_label  "  >RERA permit number</label>
+          <div class="input_inner">
+            <input type="text" id="inputref" name="inputref" formControlName="RERA" placeholder="Enter your number for validation" class="input_control" />
+          </div>
+          <p class="input_hint  mt-1">Required</p>
+        </div>
+        <div class="input">
+          <label for="inputref" class="input_label  " >DTCM permit number</label>
+          <div class="input_inner">
+            <input type="text" id="inputref" name="inputref" formControlName="DTCM" placeholder="Enter your number for validation" class="input_control" />
+          </div>
+          <p class="input_hint mt-1">Required</p>
+        </div>
+      </div> 
+      
+    </div>
+    <button type="submit" [disabled]="generalForm.invalid">Submit</button>
+  </div>
+ 
+</form>

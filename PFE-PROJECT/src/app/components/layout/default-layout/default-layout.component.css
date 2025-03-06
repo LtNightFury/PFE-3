@@ -1,0 +1,4 @@
+body, html {
+   
+    overflow-y: auto; /* Hide horizontal overflow */
+  }
