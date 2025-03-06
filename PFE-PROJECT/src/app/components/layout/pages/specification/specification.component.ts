@@ -15,7 +15,11 @@ export class SpecificationComponent implements OnInit{
     parkingSpots: ['', Validators.required],
     size: ['', Validators.required],
     plotSize: ['', Validators.required],
-  builtUpArea: ['', Validators.required]
+  builtUpArea: ['', Validators.required],
+  unitNumber:['', Validators.required],
+  constructionYear:['', Validators.required],
+  Renovationyear:['', Validators.required],
+  Furnishing:['', Validators.required],
     
   });
   bedroomOptions = [
