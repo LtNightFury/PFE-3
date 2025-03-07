@@ -1,0 +1,43 @@
+.form-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.form-row-view {
+    display: flex;
+    align-items: start;
+    gap: 2rem;
+    width: min(75rem, 100%);
+    margin-inline: auto;
+}
+
+.title-2 {
+    font-size: 1.875rem;
+    font-weight: 500;
+    line-height: 1.2;
+}
+
+.desc {
+    line-height: 1.5;
+    color: #918f90;
+}
+
+.form-row-body {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: min(45rem, 100%);
+}
+.form-row-legend {
+    flex-grow: 1;
+    flex-basis: 0;
+    display: grid;
+    gap: 0.25rem;
+}
+.form-list-view{
+    width: 720px;
+    height: 400px;
+ background: #000;
+}
