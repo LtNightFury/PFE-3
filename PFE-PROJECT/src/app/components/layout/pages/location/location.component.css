@@ -36,8 +36,54 @@
     display: grid;
     gap: 0.25rem;
 }
-.form-list-view{
+.map-container{
     width: 720px;
     height: 400px;
- background: #000;
+ 
 }
+#map {
+    height: 400px;
+    width: 100%;
+}
+.grid{
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5rem;
+
+}
+.form-list-view{
+    display: flex
+    ;
+        flex-direction: column;
+        gap: 1.5rem;
+        width: min(45rem, 100%);
+    }
+    .input_label{
+        display: block;
+        width: fit-content;
+        margin: 0 0 0.25rem;
+        font-weight: 500;
+        cursor: pointer;
+        font-size: 1rem;
+        line-height: 1.5;
+    }
+    .input_inner{display: flex;
+    align-items: center;
+    height: 3rem;
+    padding: 0 0.05rem;
+    background: #ffffff;
+    border: 0.0625rem solid #dedede;
+    border-radius: 0.25rem;
+    transition: .25s;
+
+    }
+    .input_control{flex-grow: 1;
+    width: 100%;
+    height: 100%;
+    padding: 0 0.4rem;
+    font: inherit;
+    color: #1e1e1e;
+    background: none;
+    border: none;
+    border-radius: 0.25rem;
+    }

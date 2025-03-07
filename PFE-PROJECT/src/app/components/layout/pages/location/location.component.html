@@ -8,9 +8,29 @@
         </div>
         <div class="form-row-body">
           <div class="form-list-view">
+            <div class="map-container">
+              <div id="map"></div>
+            </div>
+              <div class="grid">
+                <div>
+                <label for="latitude" class="input_label">Latitude:</label>
+                <div class="input_inner">
+                <input type="text" id="latitude" [value]="latitude" class="input_control" readonly>
+                </div>
+              </div>
+              
+              <div>
+                <label for="longitude" class="input_label">Longitude:</label>
+                <div class="input_inner">
+                <input type="text" id="longitude" [value]="longitude" class="input_control" readonly>
+                </div>
+              </div>
+            </div>
+                
+              </div>
+            </div>
   
           </div>
           </div>
-  </div>
-  </div>
+
           </form>
