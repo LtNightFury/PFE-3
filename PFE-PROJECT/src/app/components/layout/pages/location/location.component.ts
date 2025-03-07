@@ -1,4 +1,5 @@
-import { Component , AfterViewInit} from '@angular/core';
+import { Component , AfterViewInit, OnInit} from '@angular/core';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import * as L from 'leaflet';
 
 @Component({
@@ -6,10 +7,12 @@ import * as L from 'leaflet';
   templateUrl: './location.component.html',
   styleUrls: ['./location.component.css']
 })
-export class LocationComponent implements AfterViewInit{
-  constructor() { }
+export class LocationComponent implements AfterViewInit , OnInit{
   latitude: string = '';
   longitude: string = '';
+  
+  ngOnInit(): void {}
+  
   private marker: L.Marker | null = null;
 
   ngAfterViewInit(): void {
@@ -37,6 +40,11 @@ export class LocationComponent implements AfterViewInit{
       map.on('click', (e: L.LeafletMouseEvent) => {
         this.latitude = e.latlng.lat.toFixed(6);
         this.longitude = e.latlng.lng.toFixed(6);
+        this.locationform.patchValue({
+          lat: this.latitude,
+          long: this.longitude
+          
+        });
         
         if (this.marker) {
           this.marker.setLatLng(e.latlng);
@@ -47,7 +55,38 @@ export class LocationComponent implements AfterViewInit{
       
     }, 100);
   }
+  locationform: FormGroup;
+  
+  constructor(private fb: FormBuilder) {  
+    this.locationform = this.fb.group({
+      lat: new FormControl(this.latitude, [Validators.required]),
+      long: new FormControl(this.longitude, [Validators.required]),
+      city:['', Validators.required]
+    });
+  }
+
+  onSubmit(): void {
+    if (this.locationform.valid) {
+      console.log('Form submitted:', this.locationform.value);
+    }
+  }
+  city={
+    dubai: 'Dubai',
+    abudhabi: 'Abu Dhabi',
+    sharjah: 'Sharjah',
+    ajman: 'Ajman',
+    fujairah: 'Fujairah',
+    alin: 'Al Ain',
+    rak: 'Ras Al Khaimah',
+    umm: 'Umm Al Quwain'
+    
+
+  }
+  get cityOptions() {
+    return Object.entries(this.city).map(([key, value]) => ({ value: key, label: value }));
+  }
 }
+
 
 
 
