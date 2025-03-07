@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { MatDatepicker } from '@angular/material/datepicker';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-general',
@@ -9,12 +8,7 @@ import { MatDatepicker } from '@angular/material/datepicker';
 })
 export class GeneralComponent implements OnInit {
 
- 
-  
-
-  //lena 3amlthom en tant que key: value more ez mba3ed fel back 
   categories = {
-    
     Residential: 'Residential',
     Appartment: 'Appartment',
     Duplex: 'Duplex',
@@ -29,29 +23,28 @@ export class GeneralComponent implements OnInit {
     Shop: 'Shop',
     Warehouse: 'Warehouse',
     Commercial_Land: 'Commercial Land',
-
   };
 
-   status = {
+  status = {
     Draft: 'Draft',
     Active: 'Active',
     PreBooking: 'Pre booking',
     Reserved: 'Reserved',
-    Completed: 'Completed'
+    Completed: 'Completed',
   };
-
 
   brokers = {
     Broker1: 'Broker1',
     Broker2: 'Broker2',
     Broker3: 'Broker3',
   };
-  
+
   workflows = {
     Sale: 'Sale',
     Prospection: 'Prospection',
     Rent: 'Rent',
   };
+
   frequency = {
     Daily: 'Daily',
     Weekly: 'Weekly',
@@ -59,21 +52,17 @@ export class GeneralComponent implements OnInit {
     Yearly: 'Yearly',
   };
 
-  mandate= {
+  mandate = {
     Exclusive: 'Exclusive',
     Non_Exclusive: 'Non Exclusive',
     Standard: 'Standard',
   };
 
-
-  
-
-  
-  
+  // Getter methods to map key-value pairs to the options array
   get categoriesArray() {
     return Object.entries(this.categories).map(([key, value]) => ({ value: key, label: value }));
   }
-  
+
   get statusArray() {
     return Object.entries(this.status).map(([key, value]) => ({ value: key, label: value }));
   }
@@ -81,23 +70,23 @@ export class GeneralComponent implements OnInit {
   get brokersArray() {
     return Object.entries(this.brokers).map(([key, value]) => ({ value: key, label: value }));
   }
+
   get workflowsArray() {
     return Object.entries(this.workflows).map(([key, value]) => ({ value: key, label: value }));
   }
+
   get frequencyArray() {
     return Object.entries(this.frequency).map(([key, value]) => ({ value: key, label: value }));
   }
-  
+
   get mandateArray() {
     return Object.entries(this.mandate).map(([key, value]) => ({ value: key, label: value }));
   }
-  
-
 
   generalForm: FormGroup;
-  constructor(private fb: FormBuilder) {  
 
-  this.generalForm = this.fb.group({
+  constructor(private fb: FormBuilder) {
+    this.generalForm = this.fb.group({
       deal_type: ['sale'],
       Reference: ['', [Validators.required]],
       status: ['', [Validators.required]],
@@ -113,12 +102,9 @@ export class GeneralComponent implements OnInit {
       mdsrenewal: ['', [Validators.required]],
       RERA: ['', [Validators.required]],
       DTCM: ['', [Validators.required]],
-  
     });
-  
 
     this.generalForm.get('deal_type')?.valueChanges.subscribe(value => {
-
       if (value === 'rent') {
         this.generalForm.get('availabilityDate')?.setValidators(Validators.required);
         this.generalForm.get('frequency')?.setValidators(Validators.required);
@@ -126,32 +112,16 @@ export class GeneralComponent implements OnInit {
         this.generalForm.get('availabilityDate')?.clearValidators();
         this.generalForm.get('frequency')?.clearValidators();
       }
-      
-      // Important: Update the validation status
       this.generalForm.get('availabilityDate')?.updateValueAndValidity();
       this.generalForm.get('frequency')?.updateValueAndValidity();
     });
-  
   }
 
-  
-  
+  ngOnInit(): void {}
 
-
-
-    
-    ngOnInit(): void {
-   
+  onSubmit(): void {
+    if (this.generalForm.valid) {
+      console.log('Form submitted:', this.generalForm.value);
     }
-    onSubmit(): void {
-      if (this.generalForm.valid) {
-        console.log('Form submitted:', this.generalForm.value);
-      }
-    }
- 
-
-
-    //box selection
-    selectedBox: HTMLElement | null = null;
-
+  }
 }

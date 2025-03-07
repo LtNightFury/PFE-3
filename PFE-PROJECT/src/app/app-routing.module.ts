@@ -5,6 +5,7 @@ import { GeneralComponent } from './components/layout/pages/general/general.comp
 import { LocationComponent } from './components/layout/pages/location/location.component';
 import { SpecificationComponent } from './components/layout/pages/specification/specification.component';
 import { MainContentComponent } from './components/layout/main-content/main-content.component';
+import { AmenitiesComponent } from './components/layout/pages/amenities/amenities.component';
 
 const routes: Routes = [
   {
@@ -14,6 +15,8 @@ const routes: Routes = [
       { path: 'general', component: GeneralComponent },
       { path: 'location', component: LocationComponent },
       { path: 'specification', component: SpecificationComponent },
+      { path: 'amenities', component: AmenitiesComponent },
+      
     ]
   }
 ];

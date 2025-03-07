@@ -32,8 +32,9 @@
             <label for="status" class="input_label">Status</label>
             <select id="status" class="select" formControlName="status">
               <option value="" disabled selected>Select an option</option>
-              <option *ngFor="let statusss of statusArray" [value]="statusss.value">
-                {{ statusss.label }}</option>
+              <option *ngFor="let status of statusArray" [value]="status.value">
+                {{ status.label }}
+              </option>
             </select>
             <p class="input_hint mt-1">Required</p>
           </div>
