@@ -27,7 +27,7 @@
 
 <div class="form_tab_view d-flex gap-3 m-3 overflow-auto">
     <div class="form_tab" (click)="setActiveTab('General')">
-        <button class="btn btn_tab" [routerLink]="'/general'" [ngClass]="{'active_tab': activeTab === 'General'}">General</button>
+        <button class="btn btn_tab" [routerLink]="'/general'" [ngClass]="{'active_tab': activeTab === 'General',}">General</button>
       </div>
       <div class="form_tab" (click)="setActiveTab('Location')">
         <button class="btn btn_tab" routerLink="/location" [ngClass]="{'active_tab': activeTab === 'Location'}">Location</button>
