@@ -86,7 +86,9 @@
     background: none;
     border: none;
     border-radius: 0.25rem;
+    
     }
+    
     .select-status option.selected-option{
         background-color:#E5E7EB;
         color: #fff important;
