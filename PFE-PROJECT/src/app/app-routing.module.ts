@@ -6,6 +6,7 @@ import { LocationComponent } from './components/layout/pages/location/location.c
 import { SpecificationComponent } from './components/layout/pages/specification/specification.component';
 import { MainContentComponent } from './components/layout/main-content/main-content.component';
 import { AmenitiesComponent } from './components/layout/pages/amenities/amenities.component';
+import { MediaComponent } from './components/layout/pages/media/media.component';
 
 const routes: Routes = [
   {
@@ -16,6 +17,7 @@ const routes: Routes = [
       { path: 'location', component: LocationComponent },
       { path: 'specification', component: SpecificationComponent },
       { path: 'amenities', component: AmenitiesComponent },
+      { path: 'media', component: MediaComponent },
       
     ]
   }

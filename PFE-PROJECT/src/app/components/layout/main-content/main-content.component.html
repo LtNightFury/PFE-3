@@ -42,7 +42,7 @@
         <button class="btn btn_tab" [ngClass]="{'active_tab': activeTab === 'Price'}">Price</button>
       </div>
       <div class="form_tab" (click)="setActiveTab('Media')">
-        <button class="btn btn_tab" [ngClass]="{'active_tab': activeTab === 'Media'}">Media</button>
+        <button class="btn btn_tab" routerLink="/media" [ngClass]="{'active_tab': activeTab === 'Media'}">Media</button>
       </div>
       <div class="form_tab" (click)="setActiveTab('Publication')">
         <button class="btn btn_tab" [ngClass]="{'active_tab': activeTab === 'Publication'}">Publication</button>

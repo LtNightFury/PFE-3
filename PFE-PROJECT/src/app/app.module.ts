@@ -19,6 +19,10 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { AmenitiesComponent } from './components/layout/pages/amenities/amenities.component';
+import { PriceComponent } from './components/layout/pages/price/price.component';
+import { MediaComponent } from './components/layout/pages/media/media.component';
+import { PublicationComponent } from './components/layout/pages/publication/publication.component';
+import { ContactsComponent } from './components/layout/pages/contacts/contacts.component';
 
 
 
@@ -34,6 +38,10 @@ import { AmenitiesComponent } from './components/layout/pages/amenities/amenitie
     LocationComponent,
     SpecificationComponent,
     AmenitiesComponent,
+    PriceComponent,
+    MediaComponent,
+    PublicationComponent,
+    ContactsComponent,
     
     
   ],
