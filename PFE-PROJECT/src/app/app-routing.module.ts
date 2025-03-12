@@ -7,6 +7,7 @@ import { SpecificationComponent } from './components/layout/pages/specification/
 import { MainContentComponent } from './components/layout/main-content/main-content.component';
 import { AmenitiesComponent } from './components/layout/pages/amenities/amenities.component';
 import { MediaComponent } from './components/layout/pages/media/media.component';
+import { PriceComponent } from './components/layout/pages/price/price.component';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
       { path: 'specification', component: SpecificationComponent },
       { path: 'amenities', component: AmenitiesComponent },
       { path: 'media', component: MediaComponent },
+      { path: 'price', component: PriceComponent }
       
     ]
   }
