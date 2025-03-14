@@ -9,6 +9,7 @@ import { FormDataService } from '../../../services/form-data.service';
   styleUrls: ['./general.component.css']
 })
 export class GeneralComponent implements OnInit {
+  formKey: string = 'generalFormData';
   chequesOptions = [
     { value: '1', label: '1' },
     { value: '2', label: '2' },
@@ -56,7 +57,7 @@ export class GeneralComponent implements OnInit {
     Broker3: 'Broker3',
   };
 
-  workflows = {
+  workflow = {
     Sale: 'Sale',
     Prospection: 'Prospection',
     Rent: 'Rent',
@@ -92,7 +93,7 @@ export class GeneralComponent implements OnInit {
   }
 
   get workflowsArray() {
-    return Object.entries(this.workflows).map(([key, value]) => ({ value: key, label: value }));
+    return Object.entries(this.workflow).map(([key, value]) => ({ value: key, label: value }));
   }
 
   get frequencyArray() {
@@ -125,20 +126,7 @@ export class GeneralComponent implements OnInit {
   cheques: [''],
     });
 
-    this.generalForm.get('deal_type')?.valueChanges.subscribe(value => {
-      if (value === 'rent') {
-        this.generalForm.get('availabilityDate')?.setValidators(Validators.required);
-        this.generalForm.get('frequency')?.setValidators(Validators.required);
-        this.generalForm.get('cheques')?.setValidators(Validators.required);
-      } else {
-        this.generalForm.get('availabilityDate')?.clearValidators();
-        this.generalForm.get('frequency')?.clearValidators();
-        this.generalForm.get('cheques')?.clearValidators();
-      }
-      this.generalForm.get('availabilityDate')?.updateValueAndValidity();
-      this.generalForm.get('frequency')?.updateValueAndValidity();
-      this.generalForm.get('cheques')?.updateValueAndValidity();
-    });
+    
   }
   onStatusSelected(option: string) {
   this.generalForm.patchValue({ status: option });
@@ -165,11 +153,14 @@ onMandateSelected(option: string) {
 }
 
 
-  ngOnInit(): void { this.generalForm.patchValue(this.formDataService.getFormDataSnapshot());
-
+  ngOnInit(): void {  const savedData = this.formDataService.getFormDataSnapshot(this.formKey);
+    if (savedData && Object.keys(savedData).length > 0) {
+      this.generalForm.patchValue(savedData);
+    }
+  
     // Auto-save form changes
     this.generalForm.valueChanges.subscribe((value) => {
-      this.formDataService.updateFormData(value);
+      this.formDataService.updateFormData(value, this.formKey);
     });  this.generalForm.get('deal_type')?.valueChanges.subscribe((value) => {
       if (value === 'rent') {
         this.generalForm.get('availabilityDate')?.setValidators(Validators.required);

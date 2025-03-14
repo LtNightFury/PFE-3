@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,17 +9,19 @@ export class FormDataService {
   private formDataSubject = new BehaviorSubject<any>(this.loadFromLocalStorage());
   formData$ = this.formDataSubject.asObservable();
 
-  updateFormData(data: any) {
-    this.formDataSubject.next(data);
-    localStorage.setItem('generalFormData', JSON.stringify(data)); // Persist in localStorage
+  updateFormData(data: any, formKey: string) {
+    const currentData = this.loadFromLocalStorage();
+    currentData[formKey] = data; // Save data under the specific form key
+    localStorage.setItem('formData', JSON.stringify(currentData)); // Store updated data in localStorage
+    this.formDataSubject.next(currentData);
   }
 
-  getFormDataSnapshot() {
-    return this.formDataSubject.getValue();
+  getFormDataSnapshot(formKey: string) {
+    const data = this.loadFromLocalStorage();
+    return data[formKey] || {}; // Return the form data for the specific form key
   }
 
   private loadFromLocalStorage() {
-    return JSON.parse(localStorage.getItem('generalFormData') || '{}');
+    return JSON.parse(localStorage.getItem('formData') || '{}'); // Load all form data stored in localStorage
   }
 }
-
