@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, HostListener } from '@angular/core';
 
 @Component({
   selector: 'app-dropdown',
@@ -8,32 +8,39 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class DropdownComponent {
   @Input() options: { value: string; label: string; disabled?: boolean }[] = [];
   @Input() placeholder: string = 'Select an option';
+  @Input() selectedValue: string | null = null; // Ensures the selected value is controlled by the parent
   @Output() optionSelected = new EventEmitter<string>();
-  
-  selectedOption: string | null = null;
+
   isOpen: boolean = false;
-  
-  constructor() {
-    document.addEventListener('click', (event) => {
-      const target = event.target as HTMLElement;
-      if (!target.closest('.dropdown')) {
-        this.isOpen = false;
-      }
-    });
-  }
-  
-  toggleDropdown() {
-    this.isOpen = !this.isOpen;
-    event?.stopPropagation();
-  }
-  
-  selectOption(option: { value: string; label: string; disabled?: boolean }) {
-    if (option.disabled) {
-      return; // Don't select disabled options
+
+  constructor(private eRef: ElementRef) {}
+
+  // Close dropdown when clicking outside
+  @HostListener('document:click', ['$event'])
+  clickOutside(event: Event) {
+    if (!this.eRef.nativeElement.contains(event.target)) {
+      this.isOpen = false;
     }
-    
-    this.selectedOption = option.label;
+  }
+
+  // Toggle the dropdown open/close
+  toggleDropdown(event: Event) {
+    this.isOpen = !this.isOpen;
+    event.stopPropagation(); // Prevents event from closing dropdown immediately
+  }
+
+  // Select an option from the dropdown
+  selectOption(option: { value: string; label: string; disabled?: boolean }) {
+    if (option.disabled) return;
+
+    this.selectedValue = option.value;
     this.isOpen = false;
-    this.optionSelected.emit(option.value);
+    this.optionSelected.emit(option.value); // Emits the correct value, not the label
+  }
+
+  // Getter method to get the selected label or placeholder
+  get selectedLabel(): string {
+    const selectedOption = this.options.find(o => o.value === this.selectedValue);
+    return selectedOption ? selectedOption.label : this.placeholder;
   }
 }

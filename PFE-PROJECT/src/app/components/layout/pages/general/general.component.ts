@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
+import { FormDataService } from '../../../services/form-data.service';
+
 
 @Component({
   selector: 'app-general',
@@ -103,7 +105,7 @@ export class GeneralComponent implements OnInit {
 
   generalForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, private formDataService: FormDataService) {
     this.generalForm = this.fb.group({
       deal_type: ['sale'],
       Reference: ['', [Validators.required]],
@@ -139,25 +141,47 @@ export class GeneralComponent implements OnInit {
     });
   }
   onStatusSelected(option: string) {
-    this.generalForm.get('status')?.setValue(option);
-  }
-  onCategorySelected(option: string) {
-    this.generalForm.get('category')?.setValue(option);
-  }
-  onBrokerSelected(option: string) {
-    this.generalForm.get('broker')?.setValue(option);
-  }
-  onWorkflowSelected(option: string) {
-    this.generalForm.get('workflow')?.setValue(option);
-  }
-  onFrequencySelected(option: string) {
-    this.generalForm.get('frequency')?.setValue(option);
-  }
-  onMandateSelected(option: string) {
-    this.generalForm.get('mandate_type')?.setValue(option);
-  }
+  this.generalForm.patchValue({ status: option });
+}
 
-  ngOnInit(): void {}
+onCategorySelected(option: string) {
+  this.generalForm.patchValue({ category: option });
+}
+
+onBrokerSelected(option: string) {
+  this.generalForm.patchValue({ broker: option });
+}
+
+onWorkflowSelected(option: string) {
+  this.generalForm.patchValue({ workflow: option });
+}
+
+onFrequencySelected(option: string) {
+  this.generalForm.patchValue({ frequency: option });
+}
+
+onMandateSelected(option: string) {
+  this.generalForm.patchValue({ mandate_type: option });
+}
+
+
+  ngOnInit(): void { this.generalForm.patchValue(this.formDataService.getFormDataSnapshot());
+
+    // Auto-save form changes
+    this.generalForm.valueChanges.subscribe((value) => {
+      this.formDataService.updateFormData(value);
+    });  this.generalForm.get('deal_type')?.valueChanges.subscribe((value) => {
+      if (value === 'rent') {
+        this.generalForm.get('availabilityDate')?.setValidators(Validators.required);
+        this.generalForm.get('frequency')?.setValidators(Validators.required);
+      } else {
+        this.generalForm.get('availabilityDate')?.clearValidators();
+        this.generalForm.get('frequency')?.clearValidators();
+      }
+      this.generalForm.get('availabilityDate')?.updateValueAndValidity();
+      this.generalForm.get('frequency')?.updateValueAndValidity();
+    });
+  }
 
   onSubmit(): void {
     if (this.generalForm.valid) {

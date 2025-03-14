@@ -34,7 +34,9 @@
             id="status"
             [options]="statusArray" 
             [placeholder]="'Select status'"
-            (optionSelected)="onStatusSelected($event)">
+            [selectedValue]="generalForm.get('status')?.value"
+            (optionSelected)="onStatusSelected($event)"
+            >
           </app-dropdown>
             <p class="input_hint mt-1">Required</p>
           </div>
@@ -45,6 +47,7 @@
             id="category"
             [options]="categoriesArray" 
             [placeholder]="'select category'"
+            [selectedValue]="generalForm.get('category')?.value"
             (optionSelected)="onCategorySelected($event)">
           </app-dropdown>
             <p class="input_hint mt-1">Required</p>
@@ -66,6 +69,7 @@
             id="broker"
             [options]="brokersArray" 
             [placeholder]="'Select broker'"
+            [selectedValue]="generalForm.get('broker')?.value"
             (optionSelected)="onBrokerSelected($event)">
           </app-dropdown>
             <p class="input_hint mt-1">Required</p>
@@ -76,7 +80,8 @@
             <app-dropdown
             id="WorkFlow"
             [options]="workflowsArray" 
-            [placeholder]="'Select category'"
+            [placeholder]="'Select WorkFlow'"
+            [selectedValue]="generalForm.get('WorkFlow')?.value"
             (optionSelected)="onWorkflowSelected($event)">
           </app-dropdown>
             <p class="input_hint mt-1">Required</p>
@@ -88,6 +93,7 @@
         id="frequency"
         [options]="frequencyArray" 
         [placeholder]="'Select rental frequency'"
+        [selectedValue]="generalForm.get('frequency')?.value"
         (optionSelected)="onFrequencySelected($event)">
       </app-dropdown>
             <p class="input_hint mt-1">Required</p>
@@ -140,6 +146,7 @@
             id="mandate"
             [options]="mandateArray" 
             [placeholder]="'Select mandate type'"
+            [selectedValue]="generalForm.get('mandate_type')?.value"
             (optionSelected)="onMandateSelected($event)">
           </app-dropdown>
             <p class="input_hint mt-1">Required</p>
