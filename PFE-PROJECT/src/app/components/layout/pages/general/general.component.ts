@@ -120,19 +120,22 @@ export class GeneralComponent implements OnInit {
       mdsrenewal: ['', [Validators.required]],
       RERA: ['', [Validators.required]],
       DTCM: ['', [Validators.required]],
-  cheques: ['', [Validators.required]],
+  cheques: [''],
     });
 
     this.generalForm.get('deal_type')?.valueChanges.subscribe(value => {
       if (value === 'rent') {
         this.generalForm.get('availabilityDate')?.setValidators(Validators.required);
         this.generalForm.get('frequency')?.setValidators(Validators.required);
+        this.generalForm.get('cheques')?.setValidators(Validators.required);
       } else {
         this.generalForm.get('availabilityDate')?.clearValidators();
         this.generalForm.get('frequency')?.clearValidators();
+        this.generalForm.get('cheques')?.clearValidators();
       }
       this.generalForm.get('availabilityDate')?.updateValueAndValidity();
       this.generalForm.get('frequency')?.updateValueAndValidity();
+      this.generalForm.get('cheques')?.updateValueAndValidity();
     });
   }
   onStatusSelected(option: string) {
