@@ -233,15 +233,7 @@
     border-radius: .25rem;
 }
 
-.box.selected {
-    
-    background-color:lightgray;
-    
-    
-  }
-.box:hover{
-    background-color: #E5E7EB;
-}
+
    
 .form-row-view:not(:last-child) {
     padding-bottom: 2.5rem;
@@ -255,6 +247,27 @@
     gap: 6px;
 
 }
+.select-wraper button {
+   display: grid;
+    flex-wrap: wrap;
+    place-content: center;
+    min-width: 3rem;
+    min-height: 3rem   ;
+    padding: .75rem;
+    text-align: center;
+    cursor: pointer;
+    border: .0625rem solid #E5E7EB;
+    border-radius: .25rem;
+    background-color: white;
+  }
+    .select-wraper button:hover {
+        background-color: lightgray;
+     
+    }
+    .select-wraper button.selected {
+        background-color: lightgray;
+       
+    }
 
 
 

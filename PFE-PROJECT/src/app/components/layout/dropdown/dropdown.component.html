@@ -1,0 +1,17 @@
+<div class="dropdown select-status">
+    <button type="button" class="dropdown-button" (click)="toggleDropdown()">
+      {{ selectedOption || placeholder }}
+    </button>
+    <div class="dropdown-content" [class.show]="isOpen">
+      <div
+        *ngFor="let option of options"
+        class="dropdown-option"
+        [ngClass]="{
+          'disabled-option': option.disabled,
+          'selected-option': option.label === selectedOption
+        }"
+        (click)="selectOption(option)">
+        {{ option.label }}
+      </div>
+    </div>
+  </div>

@@ -7,6 +7,21 @@ import { FormBuilder, FormGroup,FormControl, Validators } from '@angular/forms';
   styleUrls: ['./general.component.css']
 })
 export class GeneralComponent implements OnInit {
+  chequesOptions = [
+    { value: '1', label: '1' },
+    { value: '2', label: '2' },
+    { value: '3', label: '3' },
+    { value: '4', label: '4' },
+    { value: '5', label: '5' },
+    { value: '6', label: '6' },
+    { value: '7', label: '7' },
+    { value: '8', label: '8' },
+    { value: '9', label: '9' },
+    { value: '10', label: '10' },
+    { value: '11', label: '11' },
+    { value: '12', label: '12' },
+  ];
+
 
   categories = {
     Residential: 'Residential',
@@ -58,9 +73,12 @@ export class GeneralComponent implements OnInit {
     Standard: 'Standard',
   };
 
-  // Getter methods to map key-value pairs to the options array
   get categoriesArray() {
-    return Object.entries(this.categories).map(([key, value]) => ({ value: key, label: value }));
+    return Object.entries(this.categories).map(([key, value]) => ({ 
+      value: key, 
+      label: value,
+      disabled: key === 'Commercial' || key === 'Residential'
+    }));
   }
 
   get statusArray() {
@@ -102,6 +120,7 @@ export class GeneralComponent implements OnInit {
       mdsrenewal: ['', [Validators.required]],
       RERA: ['', [Validators.required]],
       DTCM: ['', [Validators.required]],
+  cheques: ['', [Validators.required]],
     });
 
     this.generalForm.get('deal_type')?.valueChanges.subscribe(value => {
@@ -116,6 +135,24 @@ export class GeneralComponent implements OnInit {
       this.generalForm.get('frequency')?.updateValueAndValidity();
     });
   }
+  onStatusSelected(option: string) {
+    this.generalForm.get('status')?.setValue(option);
+  }
+  onCategorySelected(option: string) {
+    this.generalForm.get('category')?.setValue(option);
+  }
+  onBrokerSelected(option: string) {
+    this.generalForm.get('broker')?.setValue(option);
+  }
+  onWorkflowSelected(option: string) {
+    this.generalForm.get('workflow')?.setValue(option);
+  }
+  onFrequencySelected(option: string) {
+    this.generalForm.get('frequency')?.setValue(option);
+  }
+  onMandateSelected(option: string) {
+    this.generalForm.get('mandate_type')?.setValue(option);
+  }
 
   ngOnInit(): void {}
 
@@ -123,5 +160,8 @@ export class GeneralComponent implements OnInit {
     if (this.generalForm.valid) {
       console.log('Form submitted:', this.generalForm.value);
     }
+  }
+  selectcheques(value: string): void {
+    this.generalForm.get('cheques')?.setValue(value);
   }
 }

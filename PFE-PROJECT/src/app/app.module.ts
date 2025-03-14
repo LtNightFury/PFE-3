@@ -23,6 +23,7 @@ import { PriceComponent } from './components/layout/pages/price/price.component'
 import { MediaComponent } from './components/layout/pages/media/media.component';
 import { PublicationComponent } from './components/layout/pages/publication/publication.component';
 import { ContactsComponent } from './components/layout/pages/contacts/contacts.component';
+import { DropdownComponent } from './components/layout/dropdown/dropdown.component';
 
 
 
@@ -42,6 +43,7 @@ import { ContactsComponent } from './components/layout/pages/contacts/contacts.c
     MediaComponent,
     PublicationComponent,
     ContactsComponent,
+    DropdownComponent,
     
     
   ],
