@@ -84,7 +84,6 @@ export class SpecificationComponent implements OnInit {
   onSubmit(): void {
     if (this.specificationForm.valid) {
       console.log('Form submitted:', this.specificationForm.value);
-      // Perform any further actions on form submission
     }
   }
 }
