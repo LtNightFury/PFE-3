@@ -24,4 +24,6 @@ export class FormDataService {
   private loadFromLocalStorage() {
     return JSON.parse(localStorage.getItem('formData') || '{}'); // Load all form data stored in localStorage
   }
+
+  
 }
