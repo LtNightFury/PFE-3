@@ -7,7 +7,7 @@
 
 .form-row-view {
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   gap: 2rem;
   width: min(75rem, 100%);
   margin-inline: auto;
