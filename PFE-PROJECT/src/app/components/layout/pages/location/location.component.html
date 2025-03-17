@@ -11,7 +11,7 @@
       <div class="form-row-body">
         <div class="form-list-view">
           <div class="map-container">
-            <div style="height: 400px; width: 100%">
+            <div style="height: 25rem; width: 100%;">
               <app-map
                 accessToken="ctKDhXSujtr3KEz3ny53"
                 [center]="[latitude, longitude]"
@@ -32,7 +32,7 @@
                   class="input_control"
                   
                 />
-              </div>
+              </div><p class="input_hint mt-1">Required</p>
             </div>
 
             <div>
@@ -45,10 +45,24 @@
                   class="input_control"
                   
                 />
-              </div>
+              </div><p class="input_hint mt-1">Required</p>
             </div>
             <div class="select-status">
-              <label for="city" class="input_label">city</label
+              <label for="country" class="input_label">Country</label
+              ><app-dropdown
+              id="country"
+             
+              [options]="countryoption" 
+              [placeholder]="'Select country '"
+              [selectedValue]="locationform.get('country')?.value"
+              (optionSelected)="oncountryselected($event)"
+              
+              >
+            </app-dropdown>
+              <p class="input_hint mt-1">Required</p>
+            </div>
+            <div class="select-status">
+              <label for="city" class="input_label">City</label
               ><app-dropdown
               id="city"
              
@@ -61,6 +75,22 @@
             </app-dropdown>
               <p class="input_hint mt-1">Required</p>
             </div>
+            <div class="select-status">
+              <label for="Community" class="input_label">Community</label
+              ><app-dropdown
+              id="Community"
+              
+              [customClass]="isCommunityDropdownDisabled ? 'empty-select' : ''"
+              [options]="communityOptions" 
+              [placeholder]="'Select Community '"
+              [selectedValue]="locationform.get('Community')?.value"
+              (optionSelected)="oncommunityselected($event)"
+              
+              >
+            </app-dropdown>
+              <p class="input_hint mt-1">Required</p>
+            </div>
+           
           </div>
           <button
             type="submit"

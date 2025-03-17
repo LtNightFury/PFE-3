@@ -10,10 +10,12 @@ export class DropdownComponent {
   @Input() placeholder: string = 'Select an option';
   @Input() selectedValue: string | null = null; // Ensures the selected value is controlled by the parent
   @Output() optionSelected = new EventEmitter<string>();
+  @Input() customClass: string = '';
 
   isOpen: boolean = false;
 
   constructor(private eRef: ElementRef) {}
+  
 
   // Close dropdown when clicking outside
   @HostListener('document:click', ['$event'])

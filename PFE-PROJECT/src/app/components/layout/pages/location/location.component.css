@@ -134,5 +134,12 @@
       width: 100%; 
       
     }
+    .input_hint{
+        font-size: .875rem;
+        line-height: 1.43;
+        color: #918f90;
+    
+    
+    }
       
     
