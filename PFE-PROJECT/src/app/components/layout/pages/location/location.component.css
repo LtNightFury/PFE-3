@@ -36,14 +36,11 @@
     display: grid;
     gap: 0.25rem;
 }
-.map-container{
-    width: 720px;
-    height: 400px;
- 
-}
+
 #map {
     height: 400px;
     width: 100%;
+    border-radius: 10px;
 }
 .grid{
     display: grid;

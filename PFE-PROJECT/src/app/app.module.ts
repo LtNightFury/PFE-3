@@ -24,6 +24,9 @@ import { MediaComponent } from './components/layout/pages/media/media.component'
 import { PublicationComponent } from './components/layout/pages/publication/publication.component';
 import { ContactsComponent } from './components/layout/pages/contacts/contacts.component';
 import { DropdownComponent } from './components/layout/dropdown/dropdown.component';
+import { HttpClientModule } from '@angular/common/http';
+import { MapComponent } from './components/map/map.component';
+
 
 
 
@@ -44,6 +47,7 @@ import { DropdownComponent } from './components/layout/dropdown/dropdown.compone
     PublicationComponent,
     ContactsComponent,
     DropdownComponent,
+    MapComponent,
     
     
   ],
@@ -61,6 +65,7 @@ import { DropdownComponent } from './components/layout/dropdown/dropdown.compone
     MatFormFieldModule,
     MatInputModule,
     MatNativeDateModule,
+    HttpClientModule
     
     
     

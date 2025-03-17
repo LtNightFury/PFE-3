@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import{ FormDataService } from '../../services/form-data.service';
 
 @Component({
   selector: 'app-main-content',
@@ -9,7 +10,9 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 export class MainContentComponent implements OnInit {
   activeTab: string = '';
 
-  constructor(private router: Router, private route: ActivatedRoute) {}
+  constructor(private router: Router, private route: ActivatedRoute,
+    private formDataService: FormDataService
+  ) {}
 
   ngOnInit() {
     // Listen to route changes and update the activeTab accordingly
@@ -28,4 +31,8 @@ export class MainContentComponent implements OnInit {
   private capitalizeFirstLetter(text: string): string {
     return text.charAt(0).toUpperCase() + text.slice(1);
   }
+  saveAllData() {
+    this.formDataService.submitFormData();
+  }
+
 }

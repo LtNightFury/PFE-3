@@ -1,37 +1,76 @@
-
-<form  [formGroup]="locationform "(ngSubmit)="onSubmit()" >
-    <div class="form-body">
-      <div class="form-row-view">
-        <div class="form-row-legend">
-          <h2 class="title-2">Location</h2>
-          <p class="desc">Indicate longitude and latitude on the map and select an address from the list</p>
-        </div>
-        <div class="form-row-body">
-          <div class="form-list-view">
-            <div class="map-container">
-              <div id="map"></div>
+<form [formGroup]="locationform">
+  <div class="form-body">
+    <div class="form-row-view">
+      <div class="form-row-legend">
+        <h2 class="title-2">Location</h2>
+        <p class="desc">
+          Indicate longitude and latitude on the map and select an address from
+          the list
+        </p>
+      </div>
+      <div class="form-row-body">
+        <div class="form-list-view">
+          <div class="map-container">
+            <div style="height: 400px; width: 100%">
+              <app-map
+                accessToken="ctKDhXSujtr3KEz3ny53"
+                [center]="[latitude, longitude]"
+                [zoom]="16"
+                (positionSelected)="onPositionSelected($event)"
+              >
+              </app-map>
             </div>
-              <div class="grid">
-                <div>
-                <label for="latitude" class="input_label">Latitude:</label>
-                <div class="input_inner">
-                  <input type="text" id="latitude" formControlName="lat" class="input_control">
-                </div>
+          </div>
+          <div class="grid">
+            <div>
+              <label for="latitude" class="input_label">Latitude:</label>
+              <div class="input_inner">
+                <input
+                  type="text"
+                  id="latitude"
+                  formControlName="latitude"
+                  class="input_control"
+                  
+                />
               </div>
+            </div>
+
+            <div>
+              <label for="longitude" class="input_label">Longitude:</label>
+              <div class="input_inner">
+                <input
+                  type="text"
+                  id="longitude"
+                  formControlName="longitude"
+                  class="input_control"
+                  
+                />
+              </div>
+            </div>
+            <div class="select-status">
+              <label for="city" class="input_label">city</label
+              ><app-dropdown
+              id="city"
+             
+              [options]="cityOptions" 
+              [placeholder]="'Select city '"
+              [selectedValue]="locationform.get('city')?.value"
+              (optionSelected)="oncityselected($event)"
               
-              <div>
-                <label for="longitude" class="input_label">Longitude:</label>
-                <div class="input_inner">
-                  <input type="text" id="longitude" formControlName="long" class="input_control">
-                </div>
-              </div>
-              <div class="select-status"><label for="city" class="input_label">city</label><select id="city" class="select" formControlName="city" (change)="onCityChange()"><option [ngValue]="null" disabled>Select an option</option><option *ngFor="let city of cityOptions" [ngValue]="city.value"> {{ city.label }} </option></select><p class="input_hint mt-1">Required</p></div>
+              >
+            </app-dropdown>
+              <p class="input_hint mt-1">Required</p>
             </div>
-            <button type="submit" [disabled]="locationform.invalid">Submit</button>
-              </div>
-            </div>
-           
           </div>
-          </div>
-
-          </form>
+          <button
+            type="submit"
+            (click)="onSubmit()"
+            [disabled]="locationform.invalid"
+          >
+            Submit
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>

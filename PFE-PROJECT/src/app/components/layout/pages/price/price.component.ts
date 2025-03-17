@@ -15,7 +15,7 @@ export class PriceComponent implements OnInit {
     originalprice: ['', Validators.required],
     hideprice: [false, ], 
     charges: ['' ], 
-    servicecharge: ['' ], 
+    servicecharge: [ ], 
   });
   
   constructor(private fb: FormBuilder,
