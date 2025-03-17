@@ -158,7 +158,7 @@ onMandateSelected(option: string) {
       this.generalForm.patchValue(savedData);
     }
   
-    // Auto-save form changes
+    
     this.generalForm.valueChanges.subscribe((value) => {
       this.formDataService.updateFormData(value, this.formKey);
     });  this.generalForm.get('deal_type')?.valueChanges.subscribe((value) => {

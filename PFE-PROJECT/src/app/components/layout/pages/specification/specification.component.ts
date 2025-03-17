@@ -57,13 +57,13 @@ export class SpecificationComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // Load saved form data from the FormDataService (auto-save scenario)
+    
     const savedData = this.formDataService.getFormDataSnapshot(this.formKey);
     if (savedData && Object.keys(savedData).length > 0) {
       this.specificationForm.patchValue(savedData);
     }
   
-    // Auto-save form changes
+    
     this.specificationForm.valueChanges.subscribe((value) => {
       this.formDataService.updateFormData(value, this.formKey);
     });
