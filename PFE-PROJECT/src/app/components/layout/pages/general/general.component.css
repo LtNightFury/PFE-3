@@ -124,6 +124,7 @@
     border: none;
     border-radius: 0.25rem;
 
+
 }
 .input_inner{
     display: flex;
@@ -265,6 +266,11 @@
     .select-wraper button.selected {
         background-color: lightgray;
        
+    }
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
     }
 
 
